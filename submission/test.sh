@@ -175,14 +175,14 @@ check_cmd "Getting address info"
 
 # STUDENT TASK: Extract the internal key (the x-only pubkey) from the descriptor
 # WRITE YOUR SOLUTION BELOW:
-INTERNAL_KEY=$(bitcoin-cli -regtest -rpcwallet=btrustwallet getdescriptorinfo "$ADDR_INFO")
+INTERNAL_KEY=$(bitcoin-cli -regtest -rpcwallet=btrustwallet getdescriptorinfo "$ADDR_INFO" | jq -r '.descriptor' | cut -d "]" -f 2 | cut -d ")" -f 1)
 check_cmd "Extracting key from descriptor"
 INTERNAL_KEY=$(trim "$INTERNAL_KEY")
 
 # STUDENT TASK: Create a proper descriptor with just the key
 # WRITE YOUR SOLUTION BELOW:
 echo "Using internal key: $INTERNAL_KEY"
-SIMPLE_DESCRIPTOR=$(bitcoin-cli -regtest -rpcwallet=btrustwallet getdescriptorinfo "tpr($INTERNAL_KEY)")
+SIMPLE_DESCRIPTOR=$(bitcoin-cli -regtest -rpcwallet=btrustwallet getdescriptorinfo "tr($INTERNAL_KEY)")
 echo "Simple descriptor: $SIMPLE_DESCRIPTOR"
 
 # STUDENT TASK: Get a proper descriptor with checksum
