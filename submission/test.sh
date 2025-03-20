@@ -158,7 +158,7 @@ fi
 # CHALLENGE PART 7: Working with descriptors to find the final treasure
 echo ""
 echo "CHALLENGE 7: The descriptor treasure map"
-echo "-------------------------------------"
+echo "------------------------------------"
 echo "The final treasure is locked with an address derived from a descriptor."
 echo "Create a descriptor for your taproot address and derive the address to ensure it matches."
 
